@@ -18,14 +18,14 @@ import Header from './Header';
 const Home : React.FC<any> = ({navigation})=>{
   return(
     <>
+      <Header
+        mainName='더치페이'
+        leftIcon='chevron-back'
+        secondIcon='home'
+        navigation={navigation}
+      >
+      </Header>
       <ScrollView style={styles.container}>
-        <Header
-          mainName='더치페이'
-          leftIcon='chevron-back'
-          secondIcon='home'
-          navigation={navigation}
-        >
-        </Header>
         <View style={styles.imageContainer} >
           <Image
             style={styles.imageBox}
@@ -54,7 +54,7 @@ const Home : React.FC<any> = ({navigation})=>{
 
 const styles = StyleSheet.create({
   container: {
-    
+    flexGrow :1,
     width: '100%',
     backgroundColor: 'white',
   },

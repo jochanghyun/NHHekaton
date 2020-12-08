@@ -19,7 +19,7 @@ const Header : React.FC<HeaderProps> =({subName,mainName,leftIcon,secondIcon,nav
 
   const Icon1 = <Icon.Button color='black' backgroundColor='white' name={leftIcon} size={30} onPress={()=>navigation.pop()} />;
   const Icon2 = <Icon.Button name={secondIcon} color='black' backgroundColor='white' size={30} ></Icon.Button>
-  const Icon3 = <Icon.Button name='menu' color='black' backgroundColor='white' size={30} onPress={()=>ToastAndroid.show('111',1)} ></Icon.Button>
+  const Icon3 = <Icon.Button name='menu' color='black' backgroundColor='white' size={30} onPress={()=>console.log(navigation.pop)} ></Icon.Button>
   
   return (
 

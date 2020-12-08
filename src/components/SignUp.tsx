@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Alert,
-  
   Image,
   ScrollView,
   TouchableOpacity,
@@ -13,18 +12,18 @@ import {
   Dimensions,
 } from 'react-native';
 import  Icon  from 'react-native-vector-icons/Ionicons';
-
+import {useRoute} from '@react-navigation/native';
 import Header from './Header';
 
 
-const screenHeight = Dimensions.get('window').height;
-const calcIcon = <Icon name='calculator' color={'green'} size={50}></Icon>
-const cardIcon = <Icon name='card-outline' color={'green'} size={50}></Icon>
-
 const SignUp : React.FC<any> = ({navigation})=>{
+  const calcIcon = <Icon name='calculator' color={'green'} size={50}></Icon>
+  const cardIcon = <Icon name='card-outline' color={'green'} size={50}></Icon>
+
+
+
   return(
     <>
-      <ScrollView contentContainerStyle={styles.container}>
         <Header
           mainName='회원가입'
           leftIcon='chevron-back'
@@ -32,6 +31,7 @@ const SignUp : React.FC<any> = ({navigation})=>{
           navigation={navigation}
         >
         </Header>
+        <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.textContainer}>
           <Text style={styles.textGray}>Verfication Type</Text>
           <View>
@@ -45,7 +45,9 @@ const SignUp : React.FC<any> = ({navigation})=>{
           
         </View>
       
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity 
+          onPress={()=>{ navigation.push('SignUpAccount')}}
+          style={styles.button}>
           
           <Text style={styles.textGray}>Account Number</Text>
           <Text style={styles.textBlackBoldBtn}>계좌번호 인증 가입</Text>
@@ -53,8 +55,9 @@ const SignUp : React.FC<any> = ({navigation})=>{
           <View style={styles.icon}>{calcIcon}</View>
         </TouchableOpacity>
       
-        <TouchableOpacity style={styles.button}>
-
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={()=>{ navigation.push('SignUpCard')}}>
           <Text style={styles.textGray}>Card Number</Text>
           <Text style={styles.textBlackBoldBtn}>신용/체크카드 인증 가입</Text>
           <Text style={styles.textGrayBtn}>어느 카드를 사용해도 OK!</Text>
@@ -69,7 +72,6 @@ const SignUp : React.FC<any> = ({navigation})=>{
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow :1,
     width: '100%',
     backgroundColor: 'white',
     alignItems:'center'
@@ -84,10 +86,8 @@ const styles = StyleSheet.create({
     fontSize:35,
     fontFamily: 'GmarketSansTTFBold',
     color:'black',
-    
   },
   textContainer:{
-
     padding: 25
   },
   button:{

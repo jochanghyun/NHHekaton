@@ -14,4 +14,13 @@ export type DrawerProps = {
   closeDrawer: boolean,
 }
 
+export type SelectModalProps = {
+  list : Array<String>;
+  
+}
 
+export type CustomCheckBoxProps={
+  size : number;
+  isChecked : boolean;
+  setIsChecked : Function;
+}
