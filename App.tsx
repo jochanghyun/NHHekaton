@@ -29,6 +29,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {CardStyleInterpolators, createStackNavigator} from '@react-navigation/stack';
 import SignUpDetail from './src/components/SignUpDetail';
 import VerifyPhoneNumber from './src/components/VerifyPhoneNumber';
+import AddGroup from './src/components/AddGroup';
 declare const global: {HermesInternal: null | {}};
 const Stack = createStackNavigator();
 
@@ -38,13 +39,13 @@ const App = () => {
       <StatusBar barStyle="light-content" />
       <NavigationContainer>
         
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator initialRouteName="AddGroup">
           <Stack.Screen name='Home' component={Home} options={{headerShown:false}}/>
           <Stack.Screen name='SignUp' component={SignUp} options={{headerShown:false}}/>
           <Stack.Screen name='SignUpAccount' component={SignUpDetail} options={{headerShown:false}}/>
           <Stack.Screen name='SignUpCard' component={SignUpDetail} options={{headerShown:false}}/>
           <Stack.Screen name='VerifyPhoneNumber' component={VerifyPhoneNumber} options={{headerShown:false}}/>
-
+          <Stack.Screen name='AddGroup' component={AddGroup} options={{headerShown:false}}></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     </>

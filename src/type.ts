@@ -24,3 +24,8 @@ export type CustomCheckBoxProps={
   isChecked : boolean;
   setIsChecked : Function;
 }
+
+export type NextButtonProps = {
+  navigation : any;
+  nextView : string;
+}

@@ -1,7 +1,8 @@
-import React from 'react';
+import { transformFile } from '@babel/core';
+import React,{useContext, useEffect, useState} from 'react';
 import {
   Alert,
-  
+
   Image,
   ScrollView,
   TouchableOpacity,
@@ -9,17 +10,39 @@ import {
   Text,
   ToastAndroid,
   View,
+  Dimensions,
+
 } from 'react-native';
 
 import Header from './Header';
+import LoginContext from '../context/LoginContext';
 
 
 
-const Home : React.FC<any> = ({navigation})=>{
-  return(
+const Home: React.FC<any> = ({ navigation }) => {
+  const LoginJoin = 
+    <>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.push('SignUp')}
+        >
+          <Text style={styles.btnText}>로그인</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.push('SignUp')}
+        >
+          <Text style={styles.btnText}>회원가입</Text>
+        </TouchableOpacity>
+    </>
+  
+  
+
+  return (
     <>
       <Header
-        mainName='더치페이'
+        mainName='나누다'
         leftIcon='chevron-back'
         secondIcon='home'
         navigation={navigation}
@@ -29,24 +52,15 @@ const Home : React.FC<any> = ({navigation})=>{
         <View style={styles.imageContainer} >
           <Image
             style={styles.imageBox}
-            source={{
-              uri :'https://blogpfthumb-phinf.pstatic.net/MjAyMDA2MTRfMTU1/MDAxNTkyMTA5OTE3NzM1.Rmn8TO8-pg4OWMA1MRmAXUE9pot3QW9C8uULYZLT-SEg.ayfEKi7DCVT8mxaJHeJLuYzTzfsvXczXQaM3ewkbD2gg.PNG.heyggun/profileImage.png',
-            }}
+            source={require('../assets/image/logo.png')}
+            resizeMode={'contain'}
+  
           ></Image>
         </View>
-          <View style={styles.textBox}>
-            <Text style={styles.text}>소개멘트</Text>
-          </View>    
-          <View style={styles.bar}>
-            <Text></Text>
-          </View>
-          <TouchableOpacity 
-            style={styles.button}
-            onPress={()=>navigation.push('SignUp')}
-            
-          >
-            <Text style={styles.btnText}>로그인하러가기</Text>
-          </TouchableOpacity>
+        <View style={styles.textBox}>
+          {LoginJoin}
+        </View>
+
       </ScrollView>
     </>
   );
@@ -54,60 +68,68 @@ const Home : React.FC<any> = ({navigation})=>{
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow :1,
+    flexGrow: 1,
     width: '100%',
     backgroundColor: 'white',
+
   },
-  imageBox:{
+  imageBox: {
     marginTop: 30,
     marginBottom: 20,
-    display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '80%',
-    height:300,
-    backgroundColor:'white'
+    height: Dimensions.get('window').height/2,
+    backgroundColor: 'white',
+    
   },
-  imageContainer:{
-
-    display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
-    width:'100%',
-    backgroundColor:'white'
+  imageContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    backgroundColor: 'white'
   },
-  bar:{
-    backgroundColor:'#2DA64C',
-    height:50,
-    marginTop:20,
+  bar: {
+    backgroundColor: '#2DA64C',
+    height: 50,
+    marginTop: 20,
   },
-  text:{
-    fontSize:20,
-    padding:12,
-    color:'gray',
+  text: {
+    fontSize: 20,
+    padding: 12,
+    color: 'gray',
     fontFamily: 'GmarketSansTTFMedium',
-    paddingLeft:'30%',
-    paddingRight:'30%',
+    paddingLeft: '30%',
+    paddingRight: '30%',
     borderStyle: "solid",
     borderColor: 'gray',
     borderWidth: 1,
   },
-  textBox:{
-    padding:5,
-    justifyContent:'center',
-    alignItems:'center',
-    width:'100%'
+  textBox: {
+    padding: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    
+  
   },
   button: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 20
+    marginTop: 10,
+    marginBottom: 20,
+    borderColor: 'gray',
+    borderWidth: 1,
+    width: '80%',
+    borderRadius: 60,
   },
-  btnText:{
-    fontSize:20,
-    padding:12,
-    color:'gray',
+  btnText: {
+    fontSize: 20,
+    padding: 12,
+    color: 'gray',
     fontFamily: 'GmarketSansTTFMedium'
   }
 
