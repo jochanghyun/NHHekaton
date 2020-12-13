@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import {
   Alert,
@@ -18,12 +18,16 @@ import { TextInput } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
 import Header from './Header';
 import NextButton from './smallComponents/NextButton';
+import GroupContext from '../context/GroupContext';
+import { Value } from 'react-native-reanimated';
+
 
 const Service: React.FC<any> = ({ navigation }) => {
   const [groupStyle, setGroupStyle] = useState<string>();
-
+  
   return (
     <>
+      
       <Header
         mainName='모임추가'
         leftIcon='chevron-back'
@@ -69,14 +73,15 @@ const Service: React.FC<any> = ({ navigation }) => {
 
           </View>
         </View>
-        <NextButton
-          navigation={navigation}
-          nextView={''}>
+ 
 
-        </NextButton>
+          <NextButton
+            navigation={navigation}
+            nextView={'Home'}>
+          </NextButton>
 
       </ScrollView>
-
+    
     </>
   )
 

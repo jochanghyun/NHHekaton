@@ -8,7 +8,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -16,6 +16,8 @@ import {
   View,
   Text,
   StatusBar,
+  useWindowDimensions,
+  Group,
 } from 'react-native';
 
 import {
@@ -24,28 +26,46 @@ import {
 
 import Home from './src/components/Home'; 
 import SignUp from './src/components/SignUp';
-import Header from './src/components/Header';
 import {NavigationContainer} from '@react-navigation/native';
-import {CardStyleInterpolators, createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator} from '@react-navigation/stack';
 import SignUpDetail from './src/components/SignUpDetail';
 import VerifyPhoneNumber from './src/components/VerifyPhoneNumber';
 import AddGroup from './src/components/AddGroup';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import GroupContext from './src/context/GroupContext';
+import GroupMeeting from './src/components/GroupMeeting';
+import Billdivide from './src/components/Billdivide';
+import ServicesSetting from './src/components/ServicesSetting';
+
+
 declare const global: {HermesInternal: null | {}};
 const Stack = createStackNavigator();
 
+
 const App = () => {
+  const[initializing, setInitializing] = useState(true);
+  const [user,setUser]= useState();
+  const Groups = useContext(GroupContext);
+
+
   return (
     <>
       <StatusBar barStyle="light-content" />
       <NavigationContainer>
-        
-        <Stack.Navigator initialRouteName="AddGroup">
+        <Stack.Navigator initialRouteName="ServicesSetting">
           <Stack.Screen name='Home' component={Home} options={{headerShown:false}}/>
           <Stack.Screen name='SignUp' component={SignUp} options={{headerShown:false}}/>
           <Stack.Screen name='SignUpAccount' component={SignUpDetail} options={{headerShown:false}}/>
           <Stack.Screen name='SignUpCard' component={SignUpDetail} options={{headerShown:false}}/>
           <Stack.Screen name='VerifyPhoneNumber' component={VerifyPhoneNumber} options={{headerShown:false}}/>
           <Stack.Screen name='AddGroup' component={AddGroup} options={{headerShown:false}}></Stack.Screen>
+          <Stack.Screen name='Service' component={GroupMeeting} options={{headerShown:false}}/>
+          <Stack.Screen name='Meeting' component={GroupMeeting} options={{headerShown:false}}/>
+          <Stack.Screen name='Goods' component={GroupMeeting} options={{headerShown:false}}/>
+          <Stack.Screen name='Billdivide' component={Billdivide} options={{headerShown:false}}/>
+          <Stack.Screen name='ServiceDivide' component={Billdivide} options={{headerShown:false}}/>
+          <Stack.Screen name='ServicesSetting' component={ServicesSetting} options={{headerShown:false}}/>
+          
         </Stack.Navigator>
       </NavigationContainer>
     </>

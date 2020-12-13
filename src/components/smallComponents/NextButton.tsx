@@ -2,14 +2,14 @@ import React from 'react';
 
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import {NextButtonProps} from '../../type';
-const NextButton :React.FC<NextButtonProps> = ({navigation,nextView}) => {
+const NextButton :React.FC<NextButtonProps> = ({navigation,nextView,buttonText}) => {
   return (
     <>
       <TouchableOpacity
         style={styles.nextBtn}
         onPress={() => navigation.push(nextView)}
       >
-        <Text style={styles.nextBtnText}>다음</Text>
+        <Text style={styles.nextBtnText}>{buttonText? buttonText:'다음'}</Text>
       </TouchableOpacity>
     </>
   )

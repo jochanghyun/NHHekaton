@@ -12,13 +12,14 @@ import {
   Dimensions,
   CheckBox,
 } from 'react-native';
-import  Icon  from 'react-native-vector-icons/Ionicons';
-import {useRoute} from '@react-navigation/native';
 import Header from './Header';
 import RoundCheckbox from 'rn-round-checkbox';
-import { State, TextInput } from 'react-native-gesture-handler';
+import {  TextInput } from 'react-native-gesture-handler';
 import {CustomCheckBoxProps} from '../type'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const VerifyPhoneNumber : React.FC<any> = ({navigation})=>{
+ 
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [agency, setAgency] = useState<string>('');
   const [isAllChecked, setisAllChecked] = useState<boolean>(false);
@@ -26,7 +27,12 @@ const VerifyPhoneNumber : React.FC<any> = ({navigation})=>{
   const [isSecondChecked, setisSecondChecked] = useState<boolean>(false);
   const [isThirdChecked, setisThirdChecked] = useState<boolean>(false);
   const [isForthChecked, setisForthChecked] = useState<boolean>(false);
-
+  
+  const [initailizing, setInitializing] = useState<boolean>(true);
+  const [user,setUser] = useState<any>();
+  const [code,setCode] = useState<string>('');
+  const [confirm,setConfirm] = useState<any>(null);
+  
   const CustomCkeckBox : React.FC<CustomCheckBoxProps>= ({isChecked,setIsChecked,size})=>{
     return <RoundCheckbox
       size={size}
@@ -35,6 +41,16 @@ const VerifyPhoneNumber : React.FC<any> = ({navigation})=>{
       checked={true}
     ></RoundCheckbox>;
   }
+
+
+  async function confirmCode() {
+    try{
+      await confirm.confirm(code);
+    }catch(error){
+      ToastAndroid.show('Invalid code.',2);
+    }
+  }
+
   useEffect(()=>{
     if(isAllChecked){ 
       setisFirstChecked(true);
@@ -51,6 +67,11 @@ const VerifyPhoneNumber : React.FC<any> = ({navigation})=>{
       setisAllChecked(false);
     }
   },[isFirstChecked&&isSecondChecked&&isThirdChecked&&isForthChecked])
+
+  const nextBtnHandler = async()=>{
+    await AsyncStorage.setItem('phoneNumber',phoneNumber);
+    navigation.push('Home');
+  }
 
   return (
     <>
@@ -153,7 +174,7 @@ const VerifyPhoneNumber : React.FC<any> = ({navigation})=>{
         </View>
         <TouchableOpacity
           style={styles.nextBtn}
-          onPress={()=>navigation.push('VerifyPhoneNumber')}
+          onPress={()=>nextBtnHandler()}
         >
           <Text style={styles.nextBtnText}>다음</Text>
         </TouchableOpacity>            

@@ -18,18 +18,33 @@ import {useRoute} from '@react-navigation/native';
 import { State, TextInput } from 'react-native-gesture-handler';
 import { SelectModalProps } from '../type';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const SignUpDetail : React.FC<any>  = ({navigation})=>{
   const route = useRoute();
   const list = route.name === "SignUpAccount"?  ['농협','국민','신한','우리','하나','카카오','부산','대구','경남','광주','전북','제주','수협']
   :['NH','KB','삼성','신한','우리','하나','롯데','현대','IBK','씨티','SC','수협','대구','부산','경남','광주','전북','제주','산업','K뱅크','카카오','새마을']
-  
   const [firstNumber,setFirstNumber] = useState<string>('');
   const [secondNumber,setSecondNumber] = useState<string>('');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [modalValue, setModalValue] = useState<string>('');
   const [number, setNumber] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-
+  
+  
+  const nextBtnHandler = async()=>{
+    const info = {
+      RegisterationNumber : firstNumber+secondNumber,
+      AccountNumber : number,
+      agentName : modalValue,
+    }
+    try{
+      const jsonValue = JSON.stringify(info);
+      await AsyncStorage.setItem('info',jsonValue);
+    }catch(e){
+      console.error(e);
+    }
+    navigation.push('VerifyPhoneNumber');
+  }
   const RegistrationNumber = (placeholder:string,value:string,setter:Function)=>
     <TextInput
       maxLength={7}
@@ -171,7 +186,7 @@ const SignUpDetail : React.FC<any>  = ({navigation})=>{
 
         <TouchableOpacity
           style={styles.nextBtn}
-          onPress={()=>navigation.push('VerifyPhoneNumber')}
+          onPress={()=>nextBtnHandler()}
         >
           <Text style={styles.nextBtnText}>다음</Text>
         </TouchableOpacity>

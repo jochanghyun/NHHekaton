@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "195217184736",
+    "project_id": "nanuda-c03be",
+    "storage_bucket": "nanuda-c03be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:195217184736:android:706cb1eabc3a646b703d85",
+        "android_client_info": {
+          "package_name": "com.awesometsproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "195217184736-bdfejq3cr349mlu341bdbgkghdr1m769.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIGZZV4KXIq03Qe_-OFYM7Him2ugFpISA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "195217184736-bdfejq3cr349mlu341bdbgkghdr1m769.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
