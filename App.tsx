@@ -47,18 +47,17 @@ const App = () => {
   const [user,setUser]= useState();
   const Groups = useContext(GroupContext);
 
-
   return (
     <>
       <StatusBar barStyle="light-content" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="ServicesSetting">
+        <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name='Home' component={Home} options={{headerShown:false}}/>
           <Stack.Screen name='SignUp' component={SignUp} options={{headerShown:false}}/>
           <Stack.Screen name='SignUpAccount' component={SignUpDetail} options={{headerShown:false}}/>
           <Stack.Screen name='SignUpCard' component={SignUpDetail} options={{headerShown:false}}/>
           <Stack.Screen name='VerifyPhoneNumber' component={VerifyPhoneNumber} options={{headerShown:false}}/>
-          <Stack.Screen name='AddGroup' component={AddGroup} options={{headerShown:false}}></Stack.Screen>
+          <Stack.Screen name='AddGroup' component={AddGroup} options={{headerShown:false}}/>
           <Stack.Screen name='Service' component={GroupMeeting} options={{headerShown:false}}/>
           <Stack.Screen name='Meeting' component={GroupMeeting} options={{headerShown:false}}/>
           <Stack.Screen name='Goods' component={GroupMeeting} options={{headerShown:false}}/>
